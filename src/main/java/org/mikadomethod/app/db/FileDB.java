@@ -1,5 +1,6 @@
 package org.mikadomethod.app.db;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,10 +10,15 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class FileDB {
+public class FileDB implements Database{
 
 	private File file;
 
+	public FileDB(String storageFile) {
+		file = new File(storageFile);
+	}
+
+	@Override
 	public List<String> load(String key) {
 		try {
 			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
@@ -22,7 +28,8 @@ public class FileDB {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
+	@Override
 	public void store(Map<String, Serializable> data) {
 		try {
 			FileOutputStream out = new FileOutputStream(file);
@@ -33,10 +40,4 @@ public class FileDB {
 			throw new RuntimeException(e);
 		}
 	}
-
-
-	public void setStore(String storageFile) {
-		file = new File(storageFile);		
-	}
-
 }
