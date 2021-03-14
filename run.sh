@@ -1,3 +1,2 @@
 #!/bin/sh
-javac -cp src/main/java src/main/java/org/mikadomethod/app/Launcher.java
-java -cp src/main/java/ org.mikadomethod.app.Launcher
+java -cp out/production/book-chapter-2-code org.mikadomethod.app.Launcher "db.txt"
